@@ -1,7 +1,7 @@
 package com.weekly.week5;
 
 /**  
- *          4 Pillars of OOP
+ *            4 Pillars of OOP
  *            1. Encapsulation			
  *            2. Abstraction		
  *            3. Inheritance	
