@@ -1,8 +1,9 @@
 package com.weekly.week5;
 
-import com.weekly.week5.Animal.VOICE;
-
 public class Dog extends Wolf {
+	
+	private boolean akaCertified;
+	private String locations = "Everywhere";
 	
 	public Dog () { super(); } 
 	
@@ -15,9 +16,9 @@ public class Dog extends Wolf {
 	}
 	
 	public Dog (float height, float weight) {
-
-		this.height = height;
-		this.weight = weight;
+		super(height, weight);   // constructor chaining.  
+		this.setHeight(height);
+		this.setWeight(weight);
 	}
 	
 	final private boolean isGoodPet = true;
@@ -27,7 +28,8 @@ public class Dog extends Wolf {
 		return isGoodPet;
 	}
 	
-	public String dogSize() {
+	@Override
+	public String weight() {
 		if (this.getWeight() <= 10.0) {
 			return "this is a tiny dog!";
 		}
@@ -42,4 +44,29 @@ public class Dog extends Wolf {
 		}	
 		return "This dog is HUGE!!!!";
 	}
+
+	public boolean isAKACertified() {
+		return akaCertified;
+	}
+
+	public void setAKACertified(boolean akaACertified) {
+		this.akaCertified = akaACertified;
+	}
+	
+	@Override
+	public String getLocations() {
+		return locations;
+	}
+
+	@Override
+	public void setLocations(String locations) {
+		this.locations = locations;
+	}
+	
+	@Override
+	public String howl() {
+		return "whenever";
+	}
+
 }
+

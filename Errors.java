@@ -6,10 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Errors {
 
+	
 	public static void main(String[] args)  {
-		boolean run = true;
+		short run = 1;
 		//////////////////////////
 		// Unhecked exceptions 
 		//////////////////////////
@@ -18,21 +20,21 @@ public class Errors {
 		// 3.  Things the developer is responsible to catch. 
 
 	
-		if ( !run ) {	
+		if ( run == 1 ) {	
 		// java.lang.ArithmeticException
 			int x = 0, y = 0;
 			int q = x / y;  
 		}
 
-		if ( !run ) {	
+		if ( run == 2 ) {	
 		// java.lang.ArrayIndexOutOfBoundsException
-			int[] intArr = { 1,2,3,4 };
+			int[] intArr = { 1,2,3};
 			int intVal = intArr[3];
 		}
 		
 		String str = null;
 
-		if ( !run ) {	
+		if ( run == 3 ) {	
 		// java.lang.NullPointerException
 		// null guard 
 			if (str != null) {
@@ -44,7 +46,7 @@ public class Errors {
 		}
 
 		// or just use try/catch
-		if ( !run ) {					
+		if ( run == 4 ) {					
 			str = null;  // run as null and !null
 
 			try {
@@ -62,33 +64,48 @@ public class Errors {
 		// 1. Things (errors) that occur at COMPILE TIME
 		// 2. caught by existing try/catch and throws statements
 
-		if ( !run ) {
+		if ( run == 5 ) {	
 		//  FileReader noSuchFile = new FileReader("no-such-file.txt");
 		
 			try {
 				FileReader file = new FileReader("no-such-file.txt");
 			} catch (FileNotFoundException e) {
-			//	e.printStackTrace();
+				e.printStackTrace();
 				System.err.println ("stack trace printed");
 			}
 		
 		}
 
-		if ( !run ) {
-			
+		if ( run == 6 ) {	
 			Errors errs = new Errors();
 			try {			
-				//	errs.exception1(20, 10);
-				//	System.out.println (errs.exception2(20, 0));
-				//  errs.exception3();
-				//	errs.exception4();
+				int exe = 1;
+				switch (exe) {
+				case 1:
+					errs.exception1(20, 0);
+					break;
+				case 2:
+					System.out.println (errs.exception2(20, 0));
+					break;
+				case 3:
+					errs.exception3();
+					break;
+				case 4:
+					errs.exception4();
+					break;
+				case 5:
 					errs.exception5();
+					break;
+				default:
+					break;
+				}
 			} catch (Exception e) {
 				System.out.println (e.getMessage());
 			}
 		}
 	
-		if ( run ) {
+		// DogNotFoundException 
+		if ( run == 7 ) {	
 		
 			Errors errs = new Errors();
 			List<Dog> dogList = new ArrayList<>();
@@ -100,16 +117,31 @@ public class Errors {
 			dogList.add (new Dog("Labrador Retriever"));		
 			dogList.add (new Dog("Golden Retriever"));		
 				
-			String breed = "Jack Russell Terrier";
+			String breed = "Bulldog";
+//			String breed = "Jack Russell Terrier";
 			try {
 				errs.findDog(breed, dogList);
-				System.out.println (breed + " Found!");		
+				System.out.println ("The " + breed + " was Found!");		
 			} catch (DogNotFoundException d) {
 				System.out.println (d.getMessage());
 			}
 
 		}
 	}  // main
+	
+	public void findDog(String breed, List<Dog> dogs) throws DogNotFoundException {
+		boolean dogFound = false;
+		for (Dog dog : dogs) {
+			if (dog.getBreed().equals(breed)) {
+				dogFound = true;    
+				break;
+			}
+		}
+		if (!dogFound) {
+			throw new DogNotFoundException ("The " + breed + " not found!");
+		}
+	}
+	
 	
 	void exception1(int x, int y)  {
 		System.out.println (x + " / "+ y + " + "  + x / y);
@@ -133,22 +165,26 @@ public class Errors {
 	// toss them back upstream
 	void exception4 () throws NullPointerException, Exception {
 		FileReader file = new FileReader("/users/tedstandley/Documents/foo.txt");
-		String foo = null;
-		System.out.println (foo.length());
 	}
 	
 	// catch and handle locally
+	// not meant to demo each exception in the try block.  
+	// illustrating multiple catch block.
 	void exception5 () {
 		try {
-			// throws FileNotFoundException
-			FileReader file = new FileReader("/users/tedstandley/Documents/foo.txt"); 
 			
-			// throws NullPointerException
-			String foo = null;
-			System.out.println (foo.length());
+			if (false) {
+				// throws NullPointerException
+				String foo = null;
+				System.out.println (foo.length());
+			}
 			
-			// throws ArithmeticException but notice that Exception caught it.
-			exception1(20,10);
+			if (false) {
+				// throws FileNotFoundException
+				FileReader file = new FileReader("/users/tedstandley/Documents/foo.txt"); 
+			}
+			
+		// multiple catch statements must be ordered starting wht the superclass 
 			
 		} catch (IOException e) {
 			System.out.println (e.getClass().toString());
@@ -159,17 +195,5 @@ public class Errors {
 		}	
 	}
 
-	public void findDog(String breed, List<Dog> dogs) throws DogNotFoundException {
-		boolean dogFound = false;
-		for (Dog dog : dogs) {
-			if (dog.getBreed().equals(breed)) {
-				dogFound = true;    
-				break;
-			}
-		}
-		if (!dogFound) {
-			throw new DogNotFoundException (breed + " not found!");
-		}
-	}
 
 }

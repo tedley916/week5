@@ -1,8 +1,0 @@
-Scope   (Incapsulation)
-
-                                         Subclass      Subclass      
-                Class       Package      (same pkg)    (dif package)  world
-public            x            x            x            x            x
-protected         x            x            x            x
-(no identifier)   x            x            x
-private           x
