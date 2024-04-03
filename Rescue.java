@@ -13,11 +13,11 @@ public class Rescue {
 		rescue.section2();
 	
 	}
-
+	
 	private void section1() {
 		
 		String the4PillarsOfOOP = """
-				         ----  Pillars of OOP ---\n
+                        ----  Pillars of OOP ---\n
 				             1. Encapsulation			
 				             2. Abstraction		
 				             3. Inheritance	
@@ -90,7 +90,8 @@ public class Rescue {
 		Wolf dogAsTypeOfWolf = new Dog(10,10);
 		dogAsTypeOfWolf.setCoatColor("brown");
 		System.out.println ("10. coat color:  " + dogAsTypeOfWolf.getCoatColor()); // coatColor from Wolf
-		
+		Animal d =  dogAsTypeOfWolf;
+		Wolf x = (Dog) dogAsTypeOfAnimal;
 		
 		System.out.println("\n--- Objects are self-aware!!!! ---");
 		System.out.println ("11. I am a " + dog.whatAmI());
@@ -105,4 +106,5 @@ public class Rescue {
 		Wolf.birthDate();
 		Animal.birthDate();
 	}
+
 }

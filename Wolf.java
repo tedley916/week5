@@ -7,7 +7,7 @@ public class Wolf extends Animal {
 	private String coatColor;
 	private String locations = "Colder wilderness climates";  // concrete in Animal
 
-
+	
 	public Wolf (String breed) {
 		super(breed);
 	}

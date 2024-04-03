@@ -33,7 +33,7 @@ public abstract class Animal {
 	
 	VOICE voice;
 	
-	public enum VOICE {
+	protected enum VOICE {
 		BARK,
 		BRAY,
 		CHIRP,
@@ -97,7 +97,7 @@ public abstract class Animal {
 		this.weight = weight;
 	}
 	
-	protected abstract boolean isGoodPet();
+	abstract protected boolean isGoodPet();
 	
 	abstract protected String weight();
 
@@ -109,9 +109,11 @@ public abstract class Animal {
 		this.locations = locations;
 	}
 	
+	 // 
 	protected void fastestAnimals(String x) {
 		System.out.println (x);
 	}
+	
 	protected void fastestAnimals(String x, String y, String z) {
 		System.out.println (x + " " + y + " " + z);
 	}

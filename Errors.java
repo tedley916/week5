@@ -11,7 +11,7 @@ public class Errors {
 
 	
 	public static void main(String[] args)  {
-		short run = 1;
+		short run = 7;
 		//////////////////////////
 		// Unhecked exceptions 
 		//////////////////////////
@@ -117,7 +117,7 @@ public class Errors {
 			dogList.add (new Dog("Labrador Retriever"));		
 			dogList.add (new Dog("Golden Retriever"));		
 				
-			String breed = "Bulldog";
+			String breed = "Skippy";
 //			String breed = "Jack Russell Terrier";
 			try {
 				errs.findDog(breed, dogList);

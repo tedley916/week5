@@ -1,11 +1,16 @@
 package com.weekly.week5;
 
-interface Animals {
+abstract interface Animals {
 	String animalColor();
 	short numberOfLegs();
 	boolean isViviparous();
 }
 
+/**
+ * 
+ * @author tedstandley
+ * Interfaces aid in abstraction and polymorphism
+ */
 public class Interfaces {
 
 	public static void main(String[] args) {
