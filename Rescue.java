@@ -45,7 +45,7 @@ public class Rescue {
 		dog.fastestAnimals("1. Golden Retriever");
 		dog.fastestAnimals("2. Labrador Retriever,", "German Shepherd");
 		dog.fastestAnimals("3. Irish Setter,", "Rotweiler,", "Doberman");
-		// Mention dignature constraints.  
+		// Mention signature constraints.  
 		
 		System.out.println("\n--- Runtime Polymorphism ---");
 		//		Dog dogAsAniumal = new Animal();  // can't do it, Animal is not a type of dog
@@ -63,41 +63,44 @@ public class Rescue {
 		// Directly from constructor
 		System.out.println("1. dog as animal voice: " + dogAsTypeOfAnimal.getVoice());  
 		System.out.println("2. wolf as animal voice: " + wolfAsTypeOfAnimal.getVoice());
-		// abstract in Animal, overriden in Dog and Wolf"
+		// abstract in Animal, overridden in Dog and Wolf"
 		System.out.println ("3. Dog as type of animal good pet: " + dogAsTypeOfAnimal.isGoodPet());
 		System.out.println ("4. Wolf as type of animal good pet: " + wolfAsTypeOfAnimal.isGoodPet());	
-		// getters/setters in Animal, overriden in Dog and Wolf"
-		System.out.println ("5. " + wolfAsTypeOfAnimal.weight());
-		System.out.println ("6. " + dogAsTypeOfAnimal.weight()); 
-		// declared as abstract in Animal and overriden in Wolf and Dog
+		// getters/setters in Animal, overridden in Dog and Wolf"
+		System.out.println ("5. " + wolfAsTypeOfAnimal.weightDescription());
+		System.out.println ("6. " + dogAsTypeOfAnimal.weightDescription()); 
+		// declared as abstract in Animal and overridden in Wolf and Dog
 		System.out.println ("7. Dog are: " + dogAsTypeOfAnimal.getLocations());
 		System.out.println ("8. Wolves are in: " + wolfAsTypeOfAnimal.getLocations());
-		
-		
-		/* 
-		 * To use a method that's in the base class, use a cast
-		 * Animal dogAsTypeOfAnimal = new Dog(10, 50);
-		 */
+		 
+		 // To use a method that's in the base class, use a cast
+		// dogAsTypeOfAnimal).setCoatColor("silver");
 		((Wolf) dogAsTypeOfAnimal).setCoatColor("silver");
+		((Dog) dogAsTypeOfAnimal).setCoatColor("brown");
+		((BullDog) dogAsTypeOfAnimal).setCoatColor("brown");
+		
 		System.out.println ("9. coat color:  " + ((Wolf) dogAsTypeOfAnimal).getCoatColor());
 
 		/*
-		 * 
 		 *   Use base Class to instantiate so you can substitute any subclass later in development.
-		 *   This works because getCoatColor() is declared in the baseclass Wolf.	
+		 *   This works because getCoatColor() is declared in the base class Wolf.	
 		 *   coatColor set in Wolf, base Class here is Wolf
 		 */
+		
+		Animal bdAsAnimal = new BullDog(10, 50);
+		// bdAsAnimal.listOfbullDogSupportGroups();
+		// ((BullDog) bdAsAnimal).listOfbullDogSupportGroups();  // class cast exception because BullDog is subclass of Dog
+		
 		Wolf dogAsTypeOfWolf = new Dog(10,10);
-		dogAsTypeOfWolf.setCoatColor("brown");
+		//dogAsTypeOfWolf.setCoatColor("brown");
 		System.out.println ("10. coat color:  " + dogAsTypeOfWolf.getCoatColor()); // coatColor from Wolf
-		Animal d =  dogAsTypeOfWolf;
-		Wolf x = (Dog) dogAsTypeOfAnimal;
+		System.out.println ("11. coat color:  " + ((Dog) dogAsTypeOfAnimal).getCoatColor());
 		
 		System.out.println("\n--- Objects are self-aware!!!! ---");
-		System.out.println ("11. I am a " + dog.whatAmI());
-		System.out.println ("12. I am a " + wolf.whatAmI());
-		System.out.println ("13. I am a " + dogAsTypeOfAnimal.whatAmI());
-		System.out.println ("14. I am a " + dogAsTypeOfWolf.whatAmI());
+		System.out.println ("12. I am a " + dog.whatAmI());
+		System.out.println ("13. I am a " + wolf.whatAmI());
+		System.out.println ("14. I am a " + dogAsTypeOfAnimal.whatAmI());
+		System.out.println ("15. I am a " + dogAsTypeOfWolf.whatAmI());
 	}
 	
 	private void section2() {

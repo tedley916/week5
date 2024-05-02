@@ -99,7 +99,7 @@ public abstract class Animal {
 	
 	abstract protected boolean isGoodPet();
 	
-	abstract protected String weight();
+	abstract protected String weightDescription();
 
 	protected String getLocations() {
 		return locations;
@@ -127,6 +127,8 @@ public abstract class Animal {
 		System.out.println(44);
 	}
 	 */
+	
+	protected boolean isLiving() { return true; }
 	
 	public static void birthDate() {
 		Date currentDate = new Date(); 

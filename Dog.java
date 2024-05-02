@@ -29,7 +29,7 @@ public class Dog extends Wolf {
 	}
 	
 	@Override
-	public String weight() {
+	public String weightDescription() {
 		if (this.getWeight() <= 10.0) {
 			return "this is a tiny dog!";
 		}
