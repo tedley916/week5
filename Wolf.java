@@ -32,7 +32,7 @@ public class Wolf extends Animal {
 	}
 
 	public String howl() {
-		return "yes";
+		return "at night";
 	}
 	
 	@Override

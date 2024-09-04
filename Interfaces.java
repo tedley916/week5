@@ -1,6 +1,6 @@
 package com.weekly.week5;
 
-abstract interface Animals {
+interface Animals {
 	String animalColor();
 	short numberOfLegs();
 	boolean isViviparous();

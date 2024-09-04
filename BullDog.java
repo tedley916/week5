@@ -1,8 +1,9 @@
 package com.weekly.week5;
 
-import java.util.List;
-
 public class BullDog extends Dog {
+	
+	private boolean skinFoldProblems;
+	private boolean eyeProblems;
 
 	public BullDog () { super(); } 
 	
@@ -19,9 +20,21 @@ public class BullDog extends Dog {
 		this.setHeight(height);
 		this.setWeight(weight);
 	}
-	
-	protected List<String> listOfbullDogSupportGroups() {
-		return null;
+
+	public boolean hasSkinFoldProblems() {
+		return skinFoldProblems;
+	}
+
+	public void setSkinFoldProblems(boolean skinFoldProblems) {
+		this.skinFoldProblems = skinFoldProblems;
+	}
+
+	public boolean hasEyeProblems() {
+		return eyeProblems;
+	}
+
+	public void setEyeProblems(boolean eyeProblems) {
+		this.eyeProblems = eyeProblems;
 	}
 	
 }

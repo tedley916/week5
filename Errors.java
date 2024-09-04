@@ -11,7 +11,7 @@ public class Errors {
 
 	
 	public static void main(String[] args)  {
-		short run = 7;
+		short run = 6;
 		//////////////////////////
 		// Unhecked exceptions 
 		//////////////////////////
@@ -40,7 +40,7 @@ public class Errors {
 			if (str != null) {
 				System.out.println (str.length());
 			} else {
-				System.out.println ("execute alternate code");
+				System.out.println ("error caught, program continues...");
 			}
 			
 		}
@@ -76,36 +76,9 @@ public class Errors {
 		
 		}
 
-		if ( run == 6 ) {	
-			Errors errs = new Errors();
-			try {			
-				int exe = 1;
-				switch (exe) {
-				case 1:
-					errs.exception1(20, 0);
-					break;
-				case 2:
-					System.out.println (errs.exception2(20, 0));
-					break;
-				case 3:
-					errs.exception3();
-					break;
-				case 4:
-					errs.exception4();
-					break;
-				case 5:
-					errs.exception5();
-					break;
-				default:
-					break;
-				}
-			} catch (Exception e) {
-				System.out.println (e.getMessage());
-			}
-		}
-	
+
 		// DogNotFoundException 
-		if ( run == 7 ) {	
+		if ( run == 6 ) {	
 		
 			Errors errs = new Errors();
 			List<Dog> dogList = new ArrayList<>();
@@ -116,9 +89,9 @@ public class Errors {
 			dogList.add (new Dog("Bulldog"));		
 			dogList.add (new Dog("Labrador Retriever"));		
 			dogList.add (new Dog("Golden Retriever"));		
-				
-			String breed = "Skippy";
-//			String breed = "Jack Russell Terrier";
+
+//			String breed = "Bulldog";
+			String breed = "Jack Russell Terrier";
 			try {
 				errs.findDog(breed, dogList);
 				System.out.println ("The " + breed + " was Found!");		

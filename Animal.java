@@ -9,16 +9,7 @@ import java.util.Date;
  *            2. Abstraction		
  *            3. Inheritance	
  *            4. Polymorphism	
- 
- Encapsulation or scope:
-                                                   Subclass      Subclass      
-                        Class    current package   (same pkg)    (dif package)  world
-public                    x            x            x            x              x
-protected                 x            x            x            x
-package (no identifier)   x            x            x
-private                   x
-
-*/
+ **/
 
 // abstract class concrete class
 public abstract class Animal {
@@ -97,6 +88,7 @@ public abstract class Animal {
 		this.weight = weight;
 	}
 	
+	// Abstract classes MUST BE implemmted
 	abstract protected boolean isGoodPet();
 	
 	abstract protected String weightDescription();
@@ -135,7 +127,7 @@ public abstract class Animal {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		String currentDateTime = dateFormat. format(currentDate);
 		System.out.println ("birthdate : " + currentDateTime);
-		// this.setLocation("noooo workie!!!");
+		// this.setLocation("noooo workie!!!");  // no this in a static method
 	}
 	
 	protected String whatAmI() {
