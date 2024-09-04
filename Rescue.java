@@ -62,7 +62,7 @@ public class Rescue {
 		Animal wolfAsTypeOfAnimal = new Wolf(10, 50);
 		wolfAsTypeOfAnimal.setVoice(VOICE.HOWL);
 
-		// Directly from constructor
+		// Directly from Animal constructor
 		System.out.println("1. dog as animal voice: " + dogAsTypeOfAnimal.getVoice());  
 		System.out.println("2. wolf as animal voice: " + wolfAsTypeOfAnimal.getVoice());
 		// abstract in Animal, overridden in Dog and Wolf"
@@ -75,14 +75,15 @@ public class Rescue {
 		System.out.println ("7. Dog are: " + dogAsTypeOfAnimal.getLocations());
 		System.out.println ("8. Wolves are in: " + wolfAsTypeOfAnimal.getLocations());
 		 
-		 // To use a method that's in the base class, use a cast
-		// dogAsTypeOfAnimal).setCoatColor("brown");
-		((Dog) dogAsTypeOfAnimal).setCoatColor("brown");
-		((Wolf) wolfAsTypeOfAnimal).setCoatColor("silver");
+		 // To use a method that's in the base/super class, use a cast
+		// dogAsTypeOfAnimal).setCoatColor("brown");                // setCoatColor is in Wolf, so a cast is needed
+		((Dog) dogAsTypeOfAnimal).setCoatColor("brown");            // WOlf cast will work here
+		((Wolf) wolfAsTypeOfAnimal).setCoatColor("silver");         
+		// ((Dog) wolfAsTypeOfAnimal).setCoatColor("silver");       // Dog not in inheritance chain
 		// ((BullDog) dogAsTypeOfAnimal).setCoatColor("brown");		// BullDog not in inheritance chain
 		
-		// returns true for types, subtypes and interface implementations 
-		System.out.print("\n\ninstanceof\n");
+		// returns true for types, sub-types and interface implementations 
+		System.out.print("\n\n9. instanceof\n");
 		if (dogAsTypeOfAnimal instanceof Wolf) 
 			System.out.println ("instanceof Wolf");
 		if (dogAsTypeOfAnimal instanceof Dog) 
@@ -92,9 +93,13 @@ public class Rescue {
 		System.out.print("\n\n");
 		
 		
-		// Note here that the base the superdlass is BullDog
+		
+		// Note here that the base/super class is BullDog
 		Animal bullDogAsTypeOfAnimal = new BullDog(10, 50);
-		((BullDog) bullDogAsTypeOfAnimal).setCoatColor("brendle");
+		((BullDog) bullDogAsTypeOfAnimal).setCoatColor("brindle");
+		
+		((BullDog) bullDogAsTypeOfAnimal).setEyeProblems(true);
+		// ((Dog) bullDogAsTypeOfAnimal).setEyeProblems(true);  // wont work because eyeProblems only in BullDog		
 		
 		System.out.println ("10a. wolf coat color:  " + ((Wolf) wolfAsTypeOfAnimal).getCoatColor());
 		System.out.println ("10b. dog coat color:  " + ((Dog) dogAsTypeOfAnimal).getCoatColor());
@@ -105,18 +110,15 @@ public class Rescue {
 		 *   This works because getCoatColor() is declared in the base class Wolf.	
 		 *   coatColor set in Wolf, base Class here is Wolf
 		 */
-
-		
+	
 		Wolf dogAsTypeOfWolf = new Dog(10,10);
-		dogAsTypeOfWolf.setCoatColor("silver");
-		System.out.println ("11. coat color:  " + dogAsTypeOfWolf.getCoatColor()); // coatColor from Wolf
-		System.out.println ("12. coat color:  " + ((Dog) dogAsTypeOfAnimal).getCoatColor());
 		
 		System.out.println("\n--- Objects are self-aware!!!! ---");
-		System.out.println ("13. I am a " + dog.whatAmI());
-		System.out.println ("14. I am a " + wolf.whatAmI());
-		System.out.println ("15. I am a " + dogAsTypeOfAnimal.whatAmI());
-		System.out.println ("16. I am a " + dogAsTypeOfWolf.whatAmI());
+		System.out.println ("11. I am a " + dog.whatAmI());                       // Dog dog = new Dog();
+		System.out.println ("12. I am a " + wolf.whatAmI());                      // Wolf wolf = new Wolf();
+		System.out.println ("13. I am a " + dogAsTypeOfAnimal.whatAmI());         // Animal dogAstypeOfAnimal = new Dog();
+		System.out.println ("14. I am a " + dogAsTypeOfWolf.whatAmI());           // Wolf dogAstypeOfWolf = new Dog();
+		System.out.println ("15. I am a " + bullDogAsTypeOfAnimal.whatAmI());     // Animal bullDogAsTypeOfAnimal = new BullDog();
 	}
 	
 	private void section2() {
