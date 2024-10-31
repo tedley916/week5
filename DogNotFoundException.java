@@ -1,7 +1,8 @@
 package com.weekly.week5;
 
+import java.io.Serializable;
 
-public class DogNotFoundException extends Exception {
+public class DogNotFoundException extends Exception implements Serializable {
 
 	// Throwable (base class for Exception is serializable. 
 	// This is required for Exceptions to be sent to remote

@@ -9,164 +9,195 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class Errors {
 
-	
-	public static void main(String[] args)  {
-		short run = 6;
+	public static void main(String[] args) {
+		short run = 5;
 		//////////////////////////
-		// Unhecked exceptions 
+		// Unhecked exceptions
 		//////////////////////////
-		// 1. Things (errors) that occur at RUNTIME that Shouldn't 
+		// 1. Things (errors) that occur at RUNTIME that Shouldn't
 		// 2. Program crashes because it doesn't know how to continue
-		// 3.  Things the developer is responsible to catch. 
+		// 3. Things the developer is responsible to catch.
 
-	
-		if ( run == 1 ) {	
-		// java.lang.ArithmeticException
+		if (run == 1) {
+			// java.lang.ArithmeticException
 			int x = 0, y = 0;
-			int q = x / y;  
+			int q = x / y;
 		}
 
-		if ( run == 2 ) {	
-		// java.lang.ArrayIndexOutOfBoundsException
-			int[] intArr = { 1,2,3};
+		if (run == 2) {
+			// java.lang.ArrayIndexOutOfBoundsException
+			int[] intArr = { 1, 2, 3 };
 			int intVal = intArr[3];
 		}
-		
+
 		String str = null;
 
-		if ( run == 3 ) {	
-		// java.lang.NullPointerException
-		// null guard 
+		if (run == 3) {
+			// java.lang.NullPointerException
+			// null guard
 			if (str != null) {
-				System.out.println (str.length());
+				System.out.println(str.length());
 			} else {
-				System.out.println ("error caught, program continues...");
+				System.out.println("error caught, program continues...");
 			}
-			
+
 		}
 
 		// or just use try/catch
-		if ( run == 4 ) {					
-			str = null;  // run as null and !null
+		if (run == 4) {
+			str = null; // run as null and !null
 
 			try {
-				System.out.println ("no exception thrown " + str.length());
+				System.out.println("no exception thrown " + str.length());
 			} catch (Exception e) {
-				System.out.println ("str is null");
+				System.out.println("str is null");
 			} finally {
-				System.out.println ("This code runs unconditionally");
+				System.out.println("This code runs unconditionally");
 			}
 		}
-		
+
 		//////////////////////////
-		// Checked exceptions 
+		// Checked exceptions
 		//////////////////////////
 		// 1. Things (errors) that occur at COMPILE TIME
 		// 2. caught by existing try/catch and throws statements
 
-		if ( run == 5 ) {	
-		//  FileReader noSuchFile = new FileReader("no-such-file.txt");
-		
+		if (run == 5) {
+			// FileReader noSuchFile = new FileReader("no-such-file.txt");
+
 			try {
-				FileReader file = new FileReader("no-such-file.txt");
+				@SuppressWarnings("resource")
+				// throws FileNotFoundException
+				FileReader file = new FileReader("/users/tedstandley/Documents/foo.txt");	
+				// multiple catch statements must be ordered starting with the superclass
+			} catch (NullPointerException e) {
+				System.out.println(e.getClass().toString());
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				System.err.println ("stack trace printed");
+				System.out.println(e.getClass().toString());
+			} catch (IOException e) {
+				System.out.println(e.getClass().toString());
+			} catch (Exception e) {
+				System.out.println(e.getClass().toString());
 			}
-		
+
 		}
 
+		// DogNotFoundException
+		if (run == 6) {
 
-		// DogNotFoundException 
-		if ( run == 6 ) {	
-		
 			Errors errs = new Errors();
 			List<Dog> dogList = new ArrayList<>();
-			dogList.add (new Dog("Poodle"));
-			dogList.add (new Dog("German Shepherd"));
-			dogList.add (new Dog("Beagle"));		
-			dogList.add (new Dog("Rottweiler"));		
-			dogList.add (new Dog("Bulldog"));		
-			dogList.add (new Dog("Labrador Retriever"));		
-			dogList.add (new Dog("Golden Retriever"));		
+			dogList.add(new Dog("Poodle"));
+			dogList.add(new Dog("German Shepherd"));
+			dogList.add(new Dog("Beagle"));
+			dogList.add(new Dog("Rottweiler"));
+			dogList.add(new Dog("Bulldog"));
+			dogList.add(new Dog("Labrador Retriever"));
+			dogList.add(new Dog("Golden Retriever"));
 
 //			String breed = "Bulldog";
 			String breed = "Jack Russell Terrier";
 			try {
 				errs.findDog(breed, dogList);
-				System.out.println ("The " + breed + " was Found!");		
+				System.out.println("The " + breed + " was Found!");
 			} catch (DogNotFoundException d) {
-				System.out.println (d.getMessage());
+				System.out.println(d.getMessage());
 			}
 
 		}
-	}  // main
-	
+
+		if (run == 7) {
+			int exceptionNumber = 1;
+			Errors errs = new Errors();
+			try {
+				switch (exceptionNumber) {
+				case 1:
+					errs.exception1(1, 0);
+					break;
+				case 2:
+					errs.exception2(1, 0);
+					break;
+				case 3:
+					errs.exception3();
+					break;
+				case 4:
+					errs.exception4();
+					break;
+				case 5:
+					errs.exception5();
+					break;
+				default:
+					break;
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	} // main
+
 	public void findDog(String breed, List<Dog> dogs) throws DogNotFoundException {
 		boolean dogFound = false;
 		for (Dog dog : dogs) {
 			if (dog.getBreed().equals(breed)) {
-				dogFound = true;    
+				dogFound = true;
 				break;
 			}
 		}
 		if (!dogFound) {
-			throw new DogNotFoundException ("The " + breed + " not found!");
+			throw new DogNotFoundException("The " + breed + " not found!");
 		}
 	}
-	
-	
-	void exception1(int x, int y)  {
-		System.out.println (x + " / "+ y + " + "  + x / y);
+
+	void exception1(int x, int y) {
+		System.out.println(x + " / " + y + " + " + x / y);
 	}
 
 	// manually check for the condition causing the exception and throw it yourself.
-	int exception2 (int x, int y) throws Exception {
+	int exception2(int x, int y) throws Exception {
 		if (y == 0) {
-			throw new Exception ("Division by zero not allowed");
+			throw new Exception("Division by zero not allowed");
 		}
 		return x / y;
 	}
-	
+
 	// notice no try/catch block because the of the thrown keyword
-	void exception3 () throws IOException {
+	void exception3() throws IOException {
 		FileReader file = new FileReader("no-such-file.txt");
 	}
-	
+
 	// multiple catches
-	
+
 	// toss them back upstream
-	void exception4 () throws NullPointerException, Exception {
+	void exception4() throws NullPointerException, Exception {
 		FileReader file = new FileReader("/users/tedstandley/Documents/foo.txt");
 	}
-	
+
 	// catch and handle locally
-	// not meant to demo each exception in the try block.  
+	// not meant to demo each exception in the try block.
 	// illustrating multiple catch block.
-	void exception5 () {
+	void exception5() {
 		try {
-			
+
 			if (false) {
 				// throws NullPointerException
 				String foo = null;
-				System.out.println (foo.length());
+				System.out.println(foo.length());
 			}
-			
+
 			if (false) {
 				// throws FileNotFoundException
-				FileReader file = new FileReader("/users/tedstandley/Documents/foo.txt"); 
+				FileReader file = new FileReader("/users/tedstandley/Documents/foo.txt");
 			}
-			
-		// multiple catch statements must be ordered starting wht the superclass 
-			
-		} catch (IOException e) {
-			System.out.println (e.getClass().toString());
-		} catch (NullPointerException e) {
-			System.out.println (e.getClass().toString());
-		} catch (Exception e) {
-			System.out.println (e.getClass().toString());
-		}	
-	}
 
+			// multiple catch statements must be ordered starting wht the superclass
+
+		} catch (IOException e) {
+			System.out.println(e.getClass().toString());
+		} catch (NullPointerException e) {
+			System.out.println(e.getClass().toString());
+		} catch (Exception e) {
+			System.out.println(e.getClass().toString());
+		}
+	}
 
 }

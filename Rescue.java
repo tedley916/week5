@@ -14,14 +14,16 @@ public class Rescue {
 	
 	}
 	
+
+	
 	private void section1() {
 		
 		String the4PillarsOfOOP = """
                           ----  Pillars of OOP ---
-                             1. Encapsulation			
-                             2. Abstraction	
-                             3. Inheritance	
-                             4. Polymorphism\n
+                             I   Encapsulation			
+                             II  Abstraction	
+                             III Inheritance	
+                             IV  Polymorphism\n
 				 		""";
 		
 		System.out.println (the4PillarsOfOOP);
@@ -33,20 +35,22 @@ public class Rescue {
 		System.out.println ("1. Dog voice: " + dog.getVoice());  // voice from Animal
 		System.out.println ("2. Wolf voice: " + wolf.getVoice());  // voice from Animal
 		System.out.println ("3. Number oflegs = " + Dog.NUMBER_OF_LEGS);  // from Wolf static, notice the class name
-		
-		System.out.println ("4. Dog good pet: " + dog.isGoodPet());      // from Animal abstract
+		//
+		System.out.println ("\n4. Dog good pet: " + dog.isGoodPet());      // from Animal abstract
 		System.out.println ("5. Wolf good pet: " + wolf.isGoodPet());
-		
-		System.out.println ("6. Dog AKA certiried :" + dog.isAKACertified());  // from Dog
+		//
+		System.out.println ("\n6. Dog AKA certiried :" + dog.isAKACertified());  // from Dog
 		System.out.println ("7. Dog's howl: "  + dog.howl()); // from Wolf, not implemented in Dog
 		System.out.println ("8. Wolf's howl: " + wolf.howl()); 
-		
-		
+		//
 		System.out.println("\n--- Compile time Polymorphism (method overloading) ---");
 		dog.fastestAnimals("1. Golden Retriever");
 		dog.fastestAnimals("2. Labrador Retriever,", "German Shepherd");
 		dog.fastestAnimals("3. Irish Setter,", "Rotweiler,", "Doberman");
 		// Mention signature constraints.  
+		//  cannot do
+		// int showText(String text) { return 0; }
+		//  boolean showText(String text) { return false;}
 		
 		System.out.println("\n--- Runtime Polymorphism ---");
 		//      Wrong: <Sub-class> reference = new <Super-class>();
@@ -66,37 +70,39 @@ public class Rescue {
 		System.out.println("1. dog as animal voice: " + dogAsTypeOfAnimal.getVoice());  
 		System.out.println("2. wolf as animal voice: " + wolfAsTypeOfAnimal.getVoice());
 		// abstract in Animal, overridden in Dog and Wolf"
-		System.out.println ("3. Dog as type of animal good pet: " + dogAsTypeOfAnimal.isGoodPet());
+		System.out.println ("\n3. Dog as type of animal good pet: " + dogAsTypeOfAnimal.isGoodPet());
 		System.out.println ("4. Wolf as type of animal good pet: " + wolfAsTypeOfAnimal.isGoodPet());	
 		// getters/setters in Animal, overridden in Dog and Wolf"
-		System.out.println ("5. " + wolfAsTypeOfAnimal.weightDescription());
+		System.out.println ("\n5. " + wolfAsTypeOfAnimal.weightDescription());
 		System.out.println ("6. " + dogAsTypeOfAnimal.weightDescription()); 
 		// declared as abstract in Animal and overridden in Wolf and Dog
-		System.out.println ("7. Dog are: " + dogAsTypeOfAnimal.getLocations());
+		System.out.println ("\n7. Dog are: " + dogAsTypeOfAnimal.getLocations());
 		System.out.println ("8. Wolves are in: " + wolfAsTypeOfAnimal.getLocations());
 		 
-		 // To use a method that's in the base/super class, use a cast
-		// dogAsTypeOfAnimal).setCoatColor("brown");                // setCoatColor is in Wolf, so a cast is needed
-		((Dog) dogAsTypeOfAnimal).setCoatColor("brown");            // WOlf cast will work here
+		 // To use a method that's in a subclass, use a cast because this is of type Animal
+		// dogAsTypeOfAnimal).setCoatColor("brown");             // setCoatColor is in Wolf, so a cast is needed
+		((Dog) dogAsTypeOfAnimal).setCoatColor("brown");         // Wolf cast will work here
 		((Wolf) wolfAsTypeOfAnimal).setCoatColor("silver");         
-		// ((Dog) wolfAsTypeOfAnimal).setCoatColor("silver");       // Dog not in inheritance chain
-		// ((BullDog) dogAsTypeOfAnimal).setCoatColor("brown");		// BullDog not in inheritance chain
+		dogAsTypeOfAnimal.setBreed("Afgan Hound");	             // works because setBreed is in Animal (in base class)
+		// ((Dog) wolfAsTypeOfAnimal).setCoatColor("silver");    // Dog not in inheritance chain
 		
 		// returns true for types, sub-types and interface implementations 
-		System.out.print("\n\n9. instanceof\n");
+		System.out.print("\ninstanceof\n");
+		if (dogAsTypeOfAnimal instanceof Animal) 
+			System.out.println ("9a. instanceof Animal");
 		if (dogAsTypeOfAnimal instanceof Wolf) 
-			System.out.println ("instanceof Wolf");
+			System.out.println ("9b. instanceof Wolf");
 		if (dogAsTypeOfAnimal instanceof Dog) 
-			System.out.println ("instanceof Dog");	
+			System.out.println ("9c. instanceof Dog");	
 		if (dogAsTypeOfAnimal instanceof BullDog) 
-			System.out.println ("instanceof BullDog");	
+			System.out.println ("9d. instanceof BullDog");	
 		System.out.print("\n\n");
 		
 		
 		
 		// Note here that the base/super class is BullDog
 		Animal bullDogAsTypeOfAnimal = new BullDog(10, 50);
-		((BullDog) bullDogAsTypeOfAnimal).setCoatColor("brindle");
+		((BullDog) bullDogAsTypeOfAnimal).setCoatColor("brindle");  // coatColor is in Wolf
 		
 		((BullDog) bullDogAsTypeOfAnimal).setEyeProblems(true);
 		// ((Dog) bullDogAsTypeOfAnimal).setEyeProblems(true);  // wont work because eyeProblems only in BullDog		

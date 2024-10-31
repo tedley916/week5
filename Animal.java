@@ -125,9 +125,8 @@ public abstract class Animal {
 	public static void birthDate() {
 		Date currentDate = new Date(); 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-		String currentDateTime = dateFormat. format(currentDate);
+		String currentDateTime = dateFormat.format(currentDate);
 		System.out.println ("birthdate : " + currentDateTime);
-		// this.setLocation("noooo workie!!!");  // no this in a static method
 	}
 	
 	protected String whatAmI() {
