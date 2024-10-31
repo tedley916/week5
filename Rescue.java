@@ -81,10 +81,9 @@ public class Rescue {
 		 
 		 // To use a method that's in a subclass, use a cast because this is of type Animal
 		// dogAsTypeOfAnimal).setCoatColor("brown");             // setCoatColor is in Wolf, so a cast is needed
-		((Dog) dogAsTypeOfAnimal).setCoatColor("brown");         // Wolf cast will work here
-		((Wolf) wolfAsTypeOfAnimal).setCoatColor("silver");         
+		((Dog) dogAsTypeOfAnimal).setCoatColor("brown");         // Dog cast will work
+		((Wolf) wolfAsTypeOfAnimal).setCoatColor("silver");      // Wolf cast will work
 		dogAsTypeOfAnimal.setBreed("Afgan Hound");	             // works because setBreed is in Animal (in base class)
-		// ((Dog) wolfAsTypeOfAnimal).setCoatColor("silver");    // Dog not in inheritance chain
 		
 		// returns true for types, sub-types and interface implementations 
 		System.out.print("\ninstanceof\n");
